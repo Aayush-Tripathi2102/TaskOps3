@@ -3,12 +3,13 @@ import { collection, getFirestore } from "firebase/firestore";
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDVM-6gLk1pcd6wdRr4AGwhvdDWPMzQ9HI",
-  authDomain: "taskops-2-0.firebaseapp.com",
-  projectId: "taskops-2-0",
-  storageBucket: "taskops-2-0.appspot.com",
-  messagingSenderId: "494225741399",
-  appId: "1:494225741399:web:f8e153bf0a40b84f453512",
+  apiKey: "AIzaSyAYaRWUoqlFPtv191f-ty9igrdJLTzKSmQ",
+  authDomain: "taskops3-1abdb.firebaseapp.com",
+  projectId: "taskops3-1abdb",
+  storageBucket: "taskops3-1abdb.firebasestorage.app",
+  messagingSenderId: "729787173817",
+  appId: "1:729787173817:web:c4ee02ac51c581e0cfc468",
+  measurementId: "G-BYTG5XY6WW"
 };
 
 const app = initializeApp(firebaseConfig);
