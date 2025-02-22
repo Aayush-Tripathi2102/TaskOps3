@@ -67,13 +67,6 @@ const Register = () => {
   placeholder="Password"
   onChange={(e) => setPassword(e.nativeEvent.text.toLowerCase())}
 />
-{/* <TextInput
-  className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
-  placeholder="Round No"
-  style={styles.input}
-  placeholderTextColor="rgb(255, 255, 255)"
-  onChange={(e) => setRoundNo(e.nativeEvent.text.toLowerCase())}
-/> */}
 
         </View>
       </View>
