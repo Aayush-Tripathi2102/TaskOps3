@@ -56,7 +56,7 @@ const Login = () => {
             className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
             placeholder="Team Name"
             onChange={(e) => {
-              setTeamName(e.nativeEvent.text);
+              setTeamName(e.nativeEvent.text.toLowerCase());
             }}
           />
           <TextInput
@@ -68,7 +68,7 @@ const Login = () => {
             className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
             placeholder="Password"
             onChange={(e) => {
-              setPassword(e.nativeEvent.text);
+              setPassword(e.nativeEvent.text.toLowerCase());
             }}
           />
         </View>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 15,
-    marginTop: height * 0.01,
+    marginTop: height * 0.03,
   },
   container: {
     width: width*0.8,
