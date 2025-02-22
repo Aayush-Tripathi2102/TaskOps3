@@ -20,6 +20,7 @@
     "expo-linear-gradient": "~14.0.2",
     "expo-splash-screen": "^0.29.22",
     "expo-status-bar": "^2.0.1",
+    "expo-updates": "~0.27.1",
     "firebase": "^10.14.1",
     "nativewind": "^2.0.11",
     "react": "^18.3.1",
