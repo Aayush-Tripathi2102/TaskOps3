@@ -102,16 +102,21 @@ export default function Sabotage() {
 
         {/* Refresh Button */}
         <TouchableOpacity
-          className="absolute flex-row p-4 items-center bg-blue-600 rounded-xl bottom-10 shadow-lg self-center"
-          onPress={fetchSabotageStatus}
-        >
-          <Image
-            className="h-8 w-8"
-            contentFit="cover"
-            source={require("../assets/refresh.svg")}
-          />
-          <Text className="text-white text-xl ml-3 font-joffrey">Refresh</Text>
-        </TouchableOpacity>
+                className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
+                onPress={async () => {
+                  try {
+                    ToastAndroid.show("Refreshing...", ToastAndroid.SHORT);
+                    const t = await getGlobalLeaderBoard();
+                    setTeams(t);
+                  } catch (e) {
+                    console.log("error", e);
+                  }
+                  ToastAndroid.show("Refreshed", ToastAndroid.SHORT);
+                }}
+              >
+                <Image className="h-8 w-8" contentFit="cover" source={require("../assets/refresh.svg")} />
+                <Text className="text-white text-xl">Refresh</Text>
+              </TouchableOpacity>
       </SafeAreaView>
 
       {/* Logout Modal */}
