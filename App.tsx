@@ -93,39 +93,43 @@ export default function App() {
               ) : (
                 <HomeStack.Screen name="Home">
                   {() => (
-                    <Tab.Navigator
-                      screenOptions={{
-                        headerShown: false,
-                        tabBarActiveTintColor: "#000000",
-                        tabBarInactiveTintColor: "lightgray",
-                      }}
-                      initialRouteName={"Tasks"}
-                    >
-                      <Tab.Screen
-                        name="Tasks"
-                        component={Progress}
-                        options={{
-                          tabBarLabel: "Tasks",
-                          tabBarIcon: ({ color, size }) => <Ionicons name="list" color={color} size={size} />,
-                        }}
-                      />
-                      <Tab.Screen
-                        name="Leaderboard"
-                        component={LeaderBoard}
-                        options={{
-                          tabBarLabel: "Leaderboard",
-                          tabBarIcon: ({ color, size }) => <Ionicons name="flag" color={color} size={size} />,
-                        }}
-                      />
-                      <Tab.Screen
-                        name="Sabotage"
-                        component={Sabotage}
-                        options={{
-                          tabBarLabel: "Sabotage",
-                          tabBarIcon: ({ color, size }) => <Ionicons name="skull" color={color} size={size} />,
-                        }}
-                      />
-                    </Tab.Navigator>
+                   <Tab.Navigator
+                   screenOptions={{
+                     headerShown: false,
+                     tabBarStyle: {
+                       backgroundColor: "#222222", // Dark-themed tab bar
+                     },
+                     tabBarActiveTintColor: "#FFD700", // Gold for active icons
+                     tabBarInactiveTintColor: "#B0B0B0", // Soft gray for inactive icons
+                   }}
+                   initialRouteName={"Tasks"}
+                 >
+                   <Tab.Screen
+                     name="Tasks"
+                     component={Progress}
+                     options={{
+                       tabBarLabel: "Tasks",
+                       tabBarIcon: ({ color, size }) => <Ionicons name="list" color={color} size={size} />,
+                     }}
+                   />
+                   <Tab.Screen
+                     name="Leaderboard"
+                     component={LeaderBoard}
+                     options={{
+                       tabBarLabel: "Leaderboard",
+                       tabBarIcon: ({ color, size }) => <Ionicons name="flag" color={color} size={size} />,
+                     }}
+                   />
+                   <Tab.Screen
+                     name="Sabotage"
+                     component={Sabotage}
+                     options={{
+                       tabBarLabel: "Sabotage",
+                       tabBarIcon: ({ color, size }) => <Ionicons name="skull" color={color} size={size} />,
+                     }}
+                   />
+                 </Tab.Navigator>
+                 
                   )}
                 </HomeStack.Screen>
               )}
