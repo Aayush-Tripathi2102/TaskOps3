@@ -353,7 +353,7 @@ const TaskPage = () => {
                 secureTextEntry
                 style={styles.input}
                 placeholderTextColor="rgb(255, 255, 255)"
-                onChangeText={setCode}
+                onChangeText={(text) => setCode(text.toLowerCase())}
                 placeholder="Enter code"
                 className="w-[70%] mx-auto h-14 bg-white rounded-xl mt-10 shadow-2xl text-center text-3xl font-joffrey"
               />
@@ -399,6 +399,12 @@ const TaskPage = () => {
               >
                 <Text className="text-white text-center">Submit</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+        onPress={() => setShowModal(false)}
+        className="bg-red-500 p-2 rounded-lg mt-2"
+      >
+        <Text className="text-white text-center">Cancel</Text>
+      </TouchableOpacity>
             </View>
           </View>
         </Modal>

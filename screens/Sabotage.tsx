@@ -19,7 +19,7 @@ import { sabotageTeam } from "../api/assignSabotage";
 
 export default function Sabotage() {
   const { userId, setUserId } = React.useContext(UserContext);
-  const [teams, setTeams] = useState<Team[]>([]);
+    const [teams, setTeams] = useState<Team[]>([]);
   const [logoutModal, setLogoutModal] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -48,7 +48,7 @@ export default function Sabotage() {
   };
 
   const handleLogout = () => {
-    if (password === "tee") {
+    if (password.toLowerCase() === "tee") {
       setUserId(null);
       setLogoutModal(false);
       ToastAndroid.show("Logged Out Successfully!", ToastAndroid.SHORT);
