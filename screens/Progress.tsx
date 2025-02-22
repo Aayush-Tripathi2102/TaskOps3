@@ -1,13 +1,4 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ToastAndroid,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-  Alert,
-} from "react-native";
+import { View, Text, SafeAreaView, ToastAndroid, TouchableOpacity, FlatList } from "react-native";
 import { Image } from "expo-image";
 import * as React from "react";
 import { useState } from "react";
@@ -19,12 +10,17 @@ import { getTasksForTeam } from "../api/tasks";
 import { UserContext } from "../context/UserContext";
 import { TaskContext } from "../context/TaskContext";
 import { RandomlyShuffle } from "../utils/helpers";
+import { useFonts } from "expo-font";
 
 const Progress = () => {
   const [activity, setActivity] = useState<Task[]>([]);
   const { userId } = React.useContext(UserContext);
   const [isSabotaged, setIsSabotaged] = useState(false);
   const { setTaskInfo, taskInfo } = React.useContext(TaskContext);
+  
+  const [fontsLoaded] = useFonts({
+    AmongUs: require("../assets/fonts/amongus.ttf"),
+  });
 
   React.useEffect(() => {
     updateTasks();
@@ -52,27 +48,20 @@ const Progress = () => {
     }
   };
 
-  return (
-    <SafeAreaView>
-      <View className="bg-black h-[100%] overflow-hidden flex flex-col items-center">
-        <View className="flex-row justify-between items-center w-full mt-10">
-          <Image
-            className="h-48 w-16"
-            contentFit="cover"
-            source={require("../assets/leaderboard-header.svg")}
-          />
-          <Image
-            className="h-8 w-48 mt-5"
-            contentFit="cover"
-            source={require("../assets/progress-header.svg")}
-          />
-          <Image
-            className="h-48 w-16 rotate-180 mt-5"
-            contentFit="cover"
-            source={require("../assets/leaderboard-header.svg")}
-          />
-        </View>
+  if (!fontsLoaded) {
+    return null;
+  }
 
+  return (
+    <SafeAreaView className="flex-1 bg-black">
+      <View className="h-full w-full flex flex-col items-center overflow-hidden">
+        
+        {/* Header */}
+        <Text className="text-white text-7xl font-amongus mt-10" style={{ fontFamily: "AmongUs" }}>
+          Progress
+        </Text>
+        
+        {/* Sabotage Warning */}
         {isSabotaged && (
           <View className="flex-row justify-center items-center w-full mt-5">
             <Text className="text-[#dc3636] text-2xl font-bold text-center">
@@ -80,16 +69,14 @@ const Progress = () => {
             </Text>
           </View>
         )}
-        <View className="w-full h-[60%] mt-3">
+        
+        {/* Task List */}
+        <View className="w-full h-[75%] mt-3">
           <FlatList
             data={RandomlyShuffle(activity)}
             renderItem={({ item, index }) =>
               item.status === "completed" ? (
-                <TaskCompleted
-                  key={index}
-                  taskName={String(index + 1)}
-                  taskId={item.id}
-                />
+                <TaskCompleted key={index} taskName={String(index + 1)} taskId={item.id} />
               ) : (
                 <TaskIncomplete
                   onPress={() => {
@@ -104,11 +91,13 @@ const Progress = () => {
                 />
               )
             }
+            ListFooterComponent={<View className="h-20" />} // Adds space after last task
           />
         </View>
-
+        
+        {/* Fixed Refresh Button */}
         <TouchableOpacity
-          className="absolute flex flex-row p-3 items-center gap-x-5 bg-secondary rounded-xl justify-center bottom-5"
+          className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
           onPress={updateTasks}
         >
           <Image
@@ -116,7 +105,7 @@ const Progress = () => {
             contentFit="cover"
             source={require("../assets/refresh.svg")}
           />
-          <Text className="text-white text-xl mr-3">Refresh</Text>
+          <Text className="text-white text-xl">Refresh</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

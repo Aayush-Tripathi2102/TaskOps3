@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, ToastAndroid, Dimensions, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  ToastAndroid,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for back button
 import Background from "../components/Background";
@@ -19,10 +27,13 @@ const Register = () => {
       ToastAndroid.show("Please fill all the fields", ToastAndroid.SHORT);
       return;
     }
-    
+
     try {
       await registerTeam(teamName, password, parseInt(roundNo));
-      ToastAndroid.show("Team registered successfully, Please Login Now!", ToastAndroid.SHORT);
+      ToastAndroid.show(
+        "Team registered successfully, Please Login Now!",
+        ToastAndroid.SHORT
+      );
     } catch (e) {
       ToastAndroid.show((e as any).message, ToastAndroid.SHORT);
     }
