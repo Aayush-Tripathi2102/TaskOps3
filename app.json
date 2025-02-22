@@ -33,7 +33,8 @@
         {
           "fonts": [
             "./assets/fonts/Aldrich-Regular.ttf",
-            "./assets/fonts/static/Raleway-Medium.ttf"
+            "./assets/fonts/static/Raleway-Medium.ttf",
+            "./assets/fonts/static/joffrey.ttf"
           ]
         }
       ]
