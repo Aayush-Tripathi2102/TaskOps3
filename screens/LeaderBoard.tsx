@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ToastAndroid,
+  ImageBackground,
 } from "react-native";
 import { Image } from "expo-image";
 import React, { useEffect, useState } from "react";
@@ -12,43 +13,33 @@ import { Team } from "../api/models";
 import { UserContext } from "../context/UserContext";
 import { getGlobalLeaderBoard, getTeamById } from "../api/teams";
 
-function Top3Teams({ team, index }: { team: Team; index: number }) {
-  return (
-    <View className="w-full mx-auto mt-5">
-      <Image
-        className="h-16 w-[100%] mx-auto"
-        contentFit="cover"
-        source={require("../assets/leadertop.png")}
-      />
+// Store the PNG images in an array
+const teamLogos = [
+  require("../assets/teamlogo/img1.png"),
+  require("../assets/teamlogo/img2.png"),
+  require("../assets/teamlogo/img3.png"),
+  require("../assets/teamlogo/img4.png")
+];
 
-      <View className="flex-row justify-around w-full items-center px-auto absolute top-4">
-        <Text className="text-[#FFFFFF] text-ellipsis font-bold max-w-xs text-[15px] text-center">
-          {index}. {team.name}
-        </Text>
-        <Text className="text-[#FFFFFF]  text-[19px] font-bold text-center top-1">
-          {team.total_score}
-        </Text>
+function ChatBubble({ team, index }: { team: Team; index: number }) {
+  // Randomly pick a team logo
+  const randomLogo = teamLogos[index % teamLogos.length];
+
+  return (
+    <View className="w-[90%] mx-auto mt-3 bg-white p-4 rounded-lg border border-gray-300 shadow-lg flex-row items-center">
+      <View className="flex-shrink-0">
+        <Text className="text-blue-400 text-[20px] font-bold">{index}</Text>
       </View>
-    </View>
-  );
-}
-
-function Next3Teams({ team, index }: { team: Team; index: number }) {
-  return (
-    <View className="w-full mt-5 mx-auto">
-      <Image
-        className="h-8 w-[90%] mx-auto"
-        contentFit="cover"
-        source={require("../assets/leaderbottom.svg")}
-      />
-
-      <View className="flex-row justify-between px-auto absolute top-[5px] left-[10%] w-4/5">
-        <Text className="text-[#FFFFFF] text-[14px] font-bold text-center mr-[98px] ml-[2px]">
-          {index}. {team.name}
-        </Text>
-        <Text className="text-[#FFFFFF] text-[14px] font-bold right-0">
-          {team.total_score}
-        </Text>
+      <View className="ml-4 flex-1">
+        <Text className="text-black text-[20px] font-bold font-joffrey">{team.name}</Text>
+        <Text className="text-gray-800 text-[14px]">Score: {team.total_score}</Text>
+      </View>
+      <View className="flex-shrink-0">
+        <Image
+          className="h-10 w-10 rounded-full"
+          contentFit="cover"
+          source={randomLogo}
+        />
       </View>
     </View>
   );
@@ -65,8 +56,7 @@ const LeaderBoard = () => {
         const t = await getGlobalLeaderBoard();
         setTeams(t);
         const loggedInTeam = await getTeamById(userId ?? "");
-        const points = t.filter((team) => team.name == loggedInTeam?.name)[0]
-          .total_score;
+        const points = t.find((team) => team.name == loggedInTeam?.name)?.total_score || 0;
         setUserScore(points);
       } catch (e) {
         console.log("error", e);
@@ -75,79 +65,47 @@ const LeaderBoard = () => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <View className="bg-black h-[100%] overflow-hidden flex flex-col items-center">
-        {/* Leader Header Section */}
+    
+    <SafeAreaView className="flex-1 bg-black">
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View className="flex-1 p-4">
+          {/* Add space above LeaderBoard */}
+          <View className="h-10" />
 
-        <View className="flex-row justify-between w-full mt-12">
-          <Image
-            className="h-48 w-16 mt-[2px]"
-            contentFit="cover"
-            source={require("../assets/leaderboard-header.svg")}
-          />
-          <Image
-            className="h-[90px] w-48 mt-16"
-            contentFit="cover"
-            source={require("../assets/leader-heading.svg")}
-          />
-          <Image
-            className="h-48 w-16 rotate-180 mt-3"
-            contentFit="cover"
-            source={require("../assets/leaderboard-header.svg")}
-          />
-        </View>
-
-        <View className="flex-row w-full justify-around mt-[5px]">
-          <Text className="text-[#d8d8d8] text-[20px] text-center font-bold">
+          {/* Header */}
+          <Text className="text-white font-joffrey text-8xl text-center uppercase">
+            LEADERBOARD
+          </Text>
+          <Text className="text-gray-400 text-[16px] mb-3 text-center">
             Your Score: {userScore}
           </Text>
+
+          {/* Scrollable Leaderboard */}
+          <View className="flex-1">
+            {teams.map((team, i) => (
+              <ChatBubble index={i + 1} key={i} team={team} />
+            ))}
+          </View>
         </View>
+      </ScrollView>
 
-        {/* Ranks and Points Header */}
-        <View className="flex-row w-full justify-around mt-[10px]">
-          <Text className="text-[#43FFFF] text-[15px] text-center">RANK</Text>
-          <Text className="text-[#43FFFF] text-[15px] text-center">POINTS</Text>
-        </View>
-
-        {/* Top 3 teams */}
-        <View className="w-full h-[60%] mt-3">
-          <ScrollView className="flex-col mx-auto w-full">
-            {/* // show only first 3. make sure the case when the available teams is less than 3 */}
-
-            {teams
-              .filter((_, i) => i < 3)
-              .map((team, i) => (
-                <Top3Teams index={i + 1} key={i} team={team} />
-              ))}
-
-            {teams
-              .filter((_, i) => i >= 3)
-              .map((team, i) => (
-                <Next3Teams index={i + 4} key={i} team={team} />
-              ))}
-          </ScrollView>
-        </View>
-        <TouchableOpacity
-          className="absolute flex flex-row p-3 items-center gap-x-5 bg-secondary rounded-xl justify-center bottom-5"
-          onPress={async () => {
-            try {
-              ToastAndroid.show("Refreshing...", ToastAndroid.SHORT);
-              const t = await getGlobalLeaderBoard();
-              setTeams(t);
-            } catch (e) {
-              console.log("error", e);
-            }
-            ToastAndroid.show("Refreshed", ToastAndroid.SHORT);
-          }}
-        >
-          <Image
-            className="h-8 w-8"
-            contentFit="cover"
-            source={require("../assets/refresh.svg")}
-          />
-          <Text className="text-white text-xl mr-3">Refresh</Text>
-        </TouchableOpacity>
-      </View>
+      {/* Fixed Refresh Button */}
+      <TouchableOpacity
+        className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
+        onPress={async () => {
+          try {
+            ToastAndroid.show("Refreshing...", ToastAndroid.SHORT);
+            const t = await getGlobalLeaderBoard();
+            setTeams(t);
+          } catch (e) {
+            console.log("error", e);
+          }
+          ToastAndroid.show("Refreshed", ToastAndroid.SHORT);
+        }}
+      >
+        <Image className="h-8 w-8" contentFit="cover" source={require("../assets/refresh.svg")} />
+        <Text className="text-white text-xl">Refresh</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
