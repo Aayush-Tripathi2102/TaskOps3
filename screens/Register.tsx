@@ -20,8 +20,8 @@ const Register = () => {
   const navigation = useNavigation();
   const [teamName, setTeamName] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  const [roundNo, setRoundNo] = useState<string | null>(null);
-
+  // const [roundNo, setRoundNo] = useState<string | null>(null);
+  const roundNo = "1"; 
   const submit = async () => {
     if (!teamName || !password || !roundNo) {
       ToastAndroid.show("Please fill all the fields", ToastAndroid.SHORT);
@@ -51,29 +51,30 @@ const Register = () => {
       <View style={styles.container}>
         <Text style={styles.heading}>REGISTER</Text>
         <View className="relative w-full top-5 inset-0 mx-auto my-auto space-y-10">
-          <TextInput
-            className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
-            placeholder="Team Name"
-            style={styles.input}
-            placeholderTextColor="rgb(255, 255, 255)"
-            onChange={(e) => setTeamName(e.nativeEvent.text.toLowerCase())}
-          />
-          <TextInput
-            textContentType="password"
-            secureTextEntry={true}
-            style={styles.input}
-            placeholderTextColor="rgb(255, 255, 255)"
-            className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.nativeEvent.text.toLowerCase())}
-          />
-          <TextInput
-            className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
-            placeholder="Round No"
-            style={styles.input}
-            placeholderTextColor="rgb(255, 255, 255)"
-            onChange={(e) => setRoundNo(e.nativeEvent.text.toLowerCase())}
-          />
+        <TextInput
+  className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
+  placeholder="Team Name"
+  style={styles.input}
+  placeholderTextColor="rgb(255, 255, 255)"
+  onChange={(e) => setTeamName(e.nativeEvent.text.toLowerCase())}
+/>
+<TextInput
+  textContentType="password"
+  secureTextEntry={true}
+  style={styles.input}
+  placeholderTextColor="rgb(255, 255, 255)"
+  className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
+  placeholder="Password"
+  onChange={(e) => setPassword(e.nativeEvent.text.toLowerCase())}
+/>
+{/* <TextInput
+  className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
+  placeholder="Round No"
+  style={styles.input}
+  placeholderTextColor="rgb(255, 255, 255)"
+  onChange={(e) => setRoundNo(e.nativeEvent.text.toLowerCase())}
+/> */}
+
         </View>
       </View>
       <Button
