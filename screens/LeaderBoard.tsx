@@ -65,54 +65,52 @@ const LeaderBoard = () => {
   }, []);
 
   return (
-    
     <SafeAreaView className="flex-1 bg-black">
-       <Image
-              source={require("../assets/space_bg.jpg")}
-              className="absolute w-full h-full"
-              contentFit="cover"
-            />
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-1 p-4">
-          {/* Add space above LeaderBoard */}
-          <View className="h-10" />
+  <Image
+    source={require("../assets/space_bg.jpg")}
+    className="absolute w-full h-full"
+    contentFit="cover"
+  />
 
-          {/* Header */}
-          <Text className="text-white font-joffrey text-8xl text-center uppercase">
-            LEADERBOARD
-          </Text>
-          <Text className="text-gray-400 text-[16px] mb-3 text-center">
-            Your Score: {userScore}
-          </Text>
+  {/* Header */}
+  <View className="p-4">
+    <View className="h-10" />
+    <Text className="text-white font-joffrey text-6xl text-center uppercase">
+      LEADERBOARD
+    </Text>
+    <Text className="text-gray-400 text-[16px] mb-3 text-center">
+      Your Score: {userScore}
+    </Text>
+  </View>
 
-          {/* Scrollable Leaderboard */}
-          <View className="flex-1">
-            {teams.map((team, i) => (
-              <ChatBubble index={i + 1} key={i} team={team} />
-            ))}
-          </View>
-        </View>
-      </ScrollView>
+  {/* Scrollable Leaderboard */}
+  <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+    {teams.map((team, i) => (
+      <ChatBubble index={i + 1} key={i} team={team} />
+    ))}
+  </ScrollView>
 
-      {/* Fixed Refresh Button */}
-      <TouchableOpacity
-        className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
-        onPress={async () => {
-          try {
-            ToastAndroid.show("Refreshing...", ToastAndroid.SHORT);
-            const t = await getGlobalLeaderBoard();
-            setTeams(t);
-          } catch (e) {
-            console.log("error", e);
-          }
-          ToastAndroid.show("Refreshed", ToastAndroid.SHORT);
-        }}
-      >
-        <Image className="h-8 w-8" contentFit="cover" source={require("../assets/refresh.svg")} />
-        <Text className="text-white text-xl">Refresh</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+  {/* Fixed Refresh Button */}
+  <TouchableOpacity
+    className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
+    onPress={async () => {
+      try {
+        ToastAndroid.show("Refreshing...", ToastAndroid.SHORT);
+        const t = await getGlobalLeaderBoard();
+        setTeams(t);
+      } catch (e) {
+        console.log("error", e);
+      }
+      ToastAndroid.show("Refreshed", ToastAndroid.SHORT);
+    }}
+  >
+    <Image className="h-8 w-8" contentFit="cover" source={require("../assets/refresh.svg")} />
+    <Text className="text-white text-xl">Refresh</Text>
+  </TouchableOpacity>
+</SafeAreaView>
+
   );
 };
 
 export default LeaderBoard;
+

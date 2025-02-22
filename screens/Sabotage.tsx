@@ -48,7 +48,7 @@ export default function Sabotage() {
   };
 
   const handleLogout = () => {
-    if (password === "tee") {
+    if (password.toLowerCase() === "tee") {
       setUserId(null);
       setLogoutModal(false);
       ToastAndroid.show("Logged Out Successfully!", ToastAndroid.SHORT);
@@ -74,62 +74,64 @@ export default function Sabotage() {
             <Text className="text-white text-lg font-joffrey">Logout</Text>
           </TouchableOpacity>
         </View>
-  
-        {/* Title */}
-        <View className="flex-1 items-center justify-center">
+
+        {/* Title - Fixed Position */}
+        <View className=" items-center justify-center px-5">
           <Text className="text-red-500 text-6xl font-joffrey tracking-widest text-center">
             SABOTAGE MISSION
           </Text>
-  
-          {/* Team List */}
-          <View className="w-full px-5 mt-5 items-center">
-            {teams.length > 0 ? (
-              <FlatList
-                data={teams}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item, index }) => (
-                  <View className="w-full max-w-sm p-4 my-3 bg-black bg-opacity-80 rounded-2xl shadow-lg border border-red-500 items-center">
-                    <Text className="text-white text-xl font-joffrey mb-2">
-                      {index + 1}. {item.name}
-                    </Text>
-                    <TouchableOpacity
-                      className="bg-red-500 px-5 py-2 rounded-xl shadow-md"
-                      onPress={() => sabotageTeamFunc(item.id)}
-                    >
-                      <Text className="text-white text-lg font-joffrey">
-                        Sabotage
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-                contentContainerStyle={{ paddingBottom: 100 }}
-              />
-            ) : (
-              <Text className="text-white text-xl mt-10 font-joffrey text-center">
-                No teams available to sabotage
-              </Text>
-            )}
-          </View>
-  
-          {/* Refresh Button */}
-          <TouchableOpacity
-            className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
-            onPress={fetchSabotageStatus}
-          >
-            <Image
-              className="h-8 w-8"
-              contentFit="cover"
-              source={require("../assets/refresh.svg")}
-            />
-            <Text className="text-white text-xl">Refresh</Text>
-          </TouchableOpacity>
         </View>
-  
+
+        {/* Team List */}
+        <View className="w-full px-5 mt-5 flex-1">
+          {teams.length > 0 ? (
+            <FlatList
+              data={teams}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item, index }) => (
+                <View className="w-full flex-1 px-5 py-4 my-3 bg-black bg-opacity-80 rounded-2xl shadow-lg border border-red-500 items-center">
+                  <Text className="text-white text-xl font-joffrey mb-2">
+                    {index + 1}. {item.name}
+                  </Text>
+                  <TouchableOpacity
+                    className="bg-red-500 px-5 py-2 rounded-xl shadow-md"
+                    onPress={() => sabotageTeamFunc(item.id)}
+                  >
+                    <Text className="text-white text-lg font-joffrey">
+                      Sabotage
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              contentContainerStyle={{ paddingBottom: 100 }}
+            />
+          ) : (
+            <Text className="text-white text-xl mt-10 font-joffrey text-center">
+              No teams available to sabotage
+            </Text>
+          )}
+        </View>
+
+        {/* Refresh Button */}
+        <TouchableOpacity
+          className="absolute bottom-5 left-10 right-10 flex flex-row p-3 items-center gap-x-5 bg-blue-500 rounded-xl justify-center"
+          onPress={fetchSabotageStatus}
+        >
+          <Image
+            className="h-8 w-8"
+            contentFit="cover"
+            source={require("../assets/refresh.svg")}
+          />
+          <Text className="text-white text-xl">Refresh</Text>
+        </TouchableOpacity>
+
         {/* Logout Modal */}
         <Modal visible={logoutModal} transparent animationType="slide">
           <View className="flex-1 justify-center items-center bg-black bg-opacity-50">
             <View className="bg-white p-5 rounded-lg w-full shadow-lg">
-              <Text className="text-center text-lg font-joffrey">Enter Password</Text>
+              <Text className="text-center text-lg font-joffrey">
+                Enter Password
+              </Text>
               <TextInput
                 secureTextEntry
                 className="border border-gray-400 p-2 mt-3 rounded-md"
