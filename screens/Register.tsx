@@ -19,7 +19,8 @@ const { width, height } = Dimensions.get("window");
 const Register = () => {
   const navigation = useNavigation();
   const [teamName, setTeamName] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);s
+  const [password, setPassword] = useState<string | null>(null);
+  // const [roundNo, setRoundNo] = useState<string | null>(null);
   const roundNo = "1"; 
   const submit = async () => {
     if (!teamName || !password || !roundNo) {

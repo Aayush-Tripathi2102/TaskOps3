@@ -213,7 +213,7 @@ const TaskPage = () => {
   }, []);
 
   const checkPasswordAndGoBack = () => {
-    if (password === "1234") {
+    if (password === "gwcyvx") {
       // Change to real validation logic
       setShowModal(false);
       setTaskInfo(null);

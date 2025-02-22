@@ -4,7 +4,7 @@ const normalTaskList = [
     name: "Silent Signals",
     description: "From the land of Santa, take a seat, Find your task where corners meet.",
     points: 0,
-    secret: "dzanqh",
+    secret: "qwersd",
     status: "not-opened",
   },
   {
@@ -12,7 +12,7 @@ const normalTaskList = [
     name: "Defy Gravity",
     description: "Home to a mural, bold and grand,Find your clue where the artwork of a wall stands.",
     points: 0,
-    secret: "vhldas",
+    secret: "mntbvc",
     status: "not-opened",
   },
   {
@@ -20,7 +20,7 @@ const normalTaskList = [
     name: "Elastic Egypt",
     description: "A block, distant and bare, A long walk awaits to reach you there.",
     points: 0,
-    secret: "tpwjrc",
+    secret: "zxypml",
     status: "not-opened",
   },
   {
@@ -28,7 +28,7 @@ const normalTaskList = [
     name: "A Dark World",
     description: "Steps and stage beneath open skies,Find your task near where Olive lies.",
     points: 0,
-    secret: "fevvme",
+    secret: "vtrqwa",
     status: "not-opened",
   },
   {
@@ -36,7 +36,7 @@ const normalTaskList = [
     name: "A block-buster",
     description: "While its silent brother studies so much,Our favourite sibling enjoys as such",
     points: 0,
-    secret: "ycmlem",
+    secret: "cmnpxy",
     status: "not-opened",
   },
   {
@@ -44,7 +44,7 @@ const normalTaskList = [
     name: "With a Huff & a Puff",
     description: "Prison walls built so tall,to keep within just a ball",
     points: 0,
-    secret: "eduxgn",
+    secret: "yzxwtr",
     status: "not-opened",
   },
   {
@@ -52,7 +52,7 @@ const normalTaskList = [
     name: "An Upside-Down World",
     description: "Find the granite hut surrounded by trees, this is where students are at ease.",
     points: 0,
-    secret: "bcrpah",
+    secret: "pkmqlw",
     status: "not-opened",
   },
   {
@@ -60,7 +60,7 @@ const normalTaskList = [
     name: "Drop shot",
     description: "Feathers soar, quick and neat, A game of speed, stay light on your feet.",
     points: 0,
-    secret: "bcrpah",
+    secret: "trbcvx",
     status: "not-opened",
   },
 
@@ -99,7 +99,7 @@ const sabotageTaskList = [
     name: "Smart Sequence",
     description: "Mathematical differentiation or Riverbed formation, this name helps them both.",
     points: 0,
-    secret: "sfloub",
+    secret: "xvmylo",
     status: "not-opened",
   },
 ];
