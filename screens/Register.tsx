@@ -12,8 +12,8 @@ const Register = () => {
   const navigation = useNavigation();
   const [teamName, setTeamName] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  const [roundNo, setRoundNo] = useState<string | null>(null);
-
+  // const [roundNo, setRoundNo] = useState<string | null>(null);
+  const roundNo = "1"; 
   const submit = async () => {
     if (!teamName || !password || !roundNo) {
       ToastAndroid.show("Please fill all the fields", ToastAndroid.SHORT);
@@ -56,13 +56,13 @@ const Register = () => {
   placeholder="Password"
   onChange={(e) => setPassword(e.nativeEvent.text.toLowerCase())}
 />
-<TextInput
+{/* <TextInput
   className="w-[70%] mx-auto h-12 bg-white rounded-xl text-2xl p-2"
   placeholder="Round No"
   style={styles.input}
   placeholderTextColor="rgb(255, 255, 255)"
   onChange={(e) => setRoundNo(e.nativeEvent.text.toLowerCase())}
-/>
+/> */}
 
         </View>
       </View>
