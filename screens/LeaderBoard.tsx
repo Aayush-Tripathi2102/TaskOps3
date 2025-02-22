@@ -67,6 +67,11 @@ const LeaderBoard = () => {
   return (
     
     <SafeAreaView className="flex-1 bg-black">
+       <Image
+              source={require("../assets/space_bg.jpg")}
+              className="absolute w-full h-full"
+              contentFit="cover"
+            />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View className="flex-1 p-4">
           {/* Add space above LeaderBoard */}
