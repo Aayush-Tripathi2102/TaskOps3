@@ -54,6 +54,11 @@ const Progress = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-black">
+         <Image
+                    source={require("../assets/space_bg.jpg")}
+                    className="absolute w-full h-full"
+                    contentFit="cover"
+                  />
       <View className="h-full w-full flex flex-col items-center overflow-hidden">
         
         {/* Header */}

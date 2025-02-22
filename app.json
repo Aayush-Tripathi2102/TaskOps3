@@ -15,14 +15,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.androidclub.taskops20"
+      "package": "com.androidclub.taskops20",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -41,8 +45,12 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "ecfac41b-c723-499c-ac92-888d8c8cc606"
+        "projectId": "f232b82f-d1a0-46bc-8af7-894e923be565"
       }
+    },
+    "owner": "dhairya703",
+    "updates": {
+      "url": "https://u.expo.dev/f232b82f-d1a0-46bc-8af7-894e923be565"
     }
   }
 }
