@@ -20,7 +20,6 @@ const Register = () => {
   const navigation = useNavigation();
   const [teamName, setTeamName] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  // const [roundNo, setRoundNo] = useState<string | null>(null);
   const roundNo = "1"; 
   const submit = async () => {
     if (!teamName || !password || !roundNo) {
