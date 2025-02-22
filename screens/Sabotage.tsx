@@ -86,25 +86,23 @@ export default function Sabotage() {
         <View className="w-full px-5 mt-5 flex-1">
           {teams.length > 0 ? (
             <FlatList
-              data={teams}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item, index }) => (
-                <View className="w-full flex-1 px-5 py-4 my-3 bg-black bg-opacity-80 rounded-2xl shadow-lg border border-red-500 items-center">
-                  <Text className="text-white text-xl font-joffrey mb-2">
-                    {index + 1}. {item.name}
-                  </Text>
-                  <TouchableOpacity
-                    className="bg-red-500 px-5 py-2 rounded-xl shadow-md"
-                    onPress={() => sabotageTeamFunc(item.id)}
-                  >
-                    <Text className="text-white text-lg font-joffrey">
-                      Sabotage
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-              contentContainerStyle={{ paddingBottom: 100 }}
-            />
+            data={teams}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => (
+              <View className="w-full flex-row items-center justify-between px-5 py-4 my-3 bg-black bg-opacity-80 rounded-2xl shadow-lg border border-red-500">
+                <Text className="text-white text-xl font-joffrey">
+                  {index + 1}. {item.name}
+                </Text>
+                <TouchableOpacity
+                  className="bg-red-500 px-5 py-2 rounded-xl shadow-md"
+                  onPress={() => sabotageTeamFunc(item.id)}
+                >
+                  <Text className="text-white text-lg font-joffrey">Sabotage</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            contentContainerStyle={{ paddingBottom: 100 }}
+          />
           ) : (
             <Text className="text-white text-xl mt-10 font-joffrey text-center">
               No teams available to sabotage
