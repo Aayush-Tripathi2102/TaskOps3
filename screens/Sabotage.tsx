@@ -48,7 +48,7 @@ export default function Sabotage() {
   };
 
   const handleLogout = () => {
-    if (password === "tee") {
+    if (password.toLowerCase() === "tee") {
       setUserId(null);
       setLogoutModal(false);
       ToastAndroid.show("Logged Out Successfully!", ToastAndroid.SHORT);
